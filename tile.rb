@@ -13,6 +13,10 @@ class Tile
     @revealed = true
   end
 
+  def neighbor_bomb_count
+    self.neighbors.count(&:bombed)
+  end
+
   def neighbors
     x, y = pos
     results = []
