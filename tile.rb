@@ -22,17 +22,25 @@ class Tile
     results = []
     (-1).upto(1) do |i|
       (-1).upto(1) do |j|
+        tile = board[x + i][y + j]
+        next if tile.nil?
         results << board[x + i][y + j] unless i.zero? && j.zero?
       end
     end
     results
   end
-end
 
-if __FILE__ == $PROGRAM_NAME
-  board = Array.new(3) { Array.new(3) { [] } }
+  def to_s
+    if flagged
+      "F"
+    elsif revealed
+      interior? ? "_" : neighbor_bomb_count
+    else
+      "*"
+    end
+  end
 
-  board.each do |row|
-    3.times { row << Tile.new()}
+  def interior?
+    neighbor_bomb_count.zero?
   end
 end
