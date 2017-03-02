@@ -17,4 +17,10 @@ class Board
     end
   end
 
+  def render
+    puts "  #{(0...BOARD_SIZE).to_a.join(' ')}"
+    grid.each_with_index do |row, i|
+      puts "#{i} #{row.join(' ')}"
+    end
+  end
 end
